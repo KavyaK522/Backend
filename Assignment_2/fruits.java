@@ -7,20 +7,16 @@ public class fruits {
 		Scanner i=new Scanner(System.in);
 		System.out.println("Enter the fruit:-");
 		String a=i.next();
-		switch(a)
-		{
-		case "apple":
-		System.out.println("red");
-		break;
-		case "banana":
-			System.out.println("yellow");
-			break;
-			default:
-				System.out.println("green");
-				break;
-			
+		switch(a) {
+		   case "apple":
+		      System.out.println("red");
+		      break;
+		   case "banana":
+			  System.out.println("yellow");
+			  break;
+		   default:
+			  System.out.println("green");
+			  break;
 		}
-		
 	}
-
 }
