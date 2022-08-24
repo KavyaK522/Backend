@@ -3,7 +3,7 @@ package com.orthofx;
 import java.util.Scanner;
 
 public class Hospital {
-	String ID, age;
+	String ID;
 
 	static Doctor doctor = new Doctor();
 	static Patient patient = new Patient();

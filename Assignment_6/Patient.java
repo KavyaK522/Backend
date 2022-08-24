@@ -51,14 +51,17 @@ public class Patient extends Hospital {
 			System.out.println("Name:-");
 		    Name = read.next();
 		    PatientDetails.get(ID).set(0,Name);
+		    break;
 		case (2):
 			System.out.println("ConsultedDoctor:-");
 		    ConsultedDoctor = read.next();
 		    PatientDetails.get(ID).set(1,ConsultedDoctor);
+		    break;
 		case (3):
 			System.out.println("Disease:-");
 		    Disease = read.next();
-		    PatientDetails.get(ID).set(2,ConsultedDoctor);    
+		    PatientDetails.get(ID).set(2,ConsultedDoctor);
+		    break;
 		}
 		}
 		else

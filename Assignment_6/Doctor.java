@@ -46,10 +46,12 @@ public class Doctor extends Hospital {
 			System.out.println("Name:-");
 		    Name = read.next();
 		    DoctorDetails.get(ID).set(0,Name);
+		    break;
 		case (2):
 			System.out.println("New Department:-");
 		    Department = read.next();
 		    DoctorDetails.get(ID).set(1,Department);
+		    break;
 		}
 		}
 		else
