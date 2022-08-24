@@ -4,7 +4,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Patient {
+public class Patient extends Hospital {
 	String Name, ConsultedDoctor,Disease ;
 	HashMap<String, ArrayList<String>> PatientDetails = new HashMap<String, ArrayList<String>>();
 	Scanner read=new Scanner(System.in);
