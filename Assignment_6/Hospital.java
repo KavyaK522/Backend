@@ -41,7 +41,7 @@ public class Hospital {
 					break;
 				}
 				break;
-			case (2):
+			case (2): 
 				switch (m) {
 				case (1):
 					patient.addPatientDetails();
@@ -56,6 +56,7 @@ public class Hospital {
 					patient.removePatientDetails();
 					break;
 				}
+			break;
 			case (3):
 				System.exit(0);
 
@@ -63,6 +64,6 @@ public class Hospital {
 			default:
 				System.out.println("Invalid input");
 			}
-		} while (true);
+		} while (n==1||n==2);
 	}
 }

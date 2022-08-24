@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Patient {
-	String Name, ConsultedDoctor;
+	String Name, ConsultedDoctor,Disease ;
 	HashMap<String, ArrayList<String>> PatientDetails = new HashMap<String, ArrayList<String>>();
 	Scanner read=new Scanner(System.in);
 	public void addPatientDetails() {
@@ -19,6 +19,9 @@ public class Patient {
 		System.out.println("Enter consulted doctor name:-");
 		ConsultedDoctor = read.next();
 		PatientDetails.get(ID).add(ConsultedDoctor);
+		System.out.println("Enter disease:-");
+		Disease = read.next();
+		PatientDetails.get(ID).add(Disease);
 		}
 		else
 			System.out.println("ID already exist");
@@ -31,6 +34,8 @@ public class Patient {
 		System.out.println(PatientDetails.get(ID).get(0));
 		System.out.println("ConsultedDoctor:");
 		System.out.println(PatientDetails.get(ID).get(1));
+		System.out.println("Enter disease:-");
+		System.out.println(PatientDetails.get(ID).get(2));
 		}
 		else
 			System.out.println("Invalid ID");
@@ -50,6 +55,10 @@ public class Patient {
 			System.out.println("ConsultedDoctor:-");
 		    ConsultedDoctor = read.next();
 		    PatientDetails.get(ID).set(1,ConsultedDoctor);
+		case (3):
+			System.out.println("Disease:-");
+		    Disease = read.next();
+		    PatientDetails.get(ID).set(2,ConsultedDoctor);    
 		}
 		}
 		else
