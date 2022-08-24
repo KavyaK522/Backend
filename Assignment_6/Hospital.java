@@ -15,8 +15,8 @@ public class Hospital {
 		int n, m;
 		Scanner input = new Scanner(System.in);
 		do {
-			System.out.println("press 1 to enter doctor section");
-			System.out.println("press 2 to enter patient section");
+			System.out.println("press 1 to enter doctor details");
+			System.out.println("press 2 to enter patient details");
 			System.out.println("press 3 to exit");
 			n = input.nextInt();
 			System.out.println("press 1 to add");
@@ -63,7 +63,8 @@ public class Hospital {
 				break;
 			default:
 				System.out.println("Invalid input");
+				break;
 			}
-		} while (n==1||n==2);
+		} while (true);
 	}
 }
