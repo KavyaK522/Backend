@@ -1,11 +1,8 @@
 package com.orthofx.hospital.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
@@ -13,12 +10,13 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+
+import javax.persistence.ManyToOne;
 
 @Entity
-@Table(name = "Doctor")
+@Table(name = "patient")
 
-public class Doctor {
+public class Patient {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -29,28 +27,27 @@ public class Doctor {
 	@Column(name = "lastname")
 	private String lastname;
 	
-	@Column(name = "Department")
-	private String Department;
+	@Column(name = "phone")
+	private String phone;
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.EAGER,mappedBy = "doctor")
-    private List<Patient> patients = new ArrayList<>();
+	@ManyToOne
+	private Doctor doctor;
+	
 	
 
-	public Doctor() {
+	public Patient() {
+		super();
 	}
 
-	public Doctor(String firstname, String lastname, String Department) {
+	public Patient(String firstname, String lastname, String phone, Doctor doctor) {
+		super();
+		this.doctor = new Doctor("","","");
 		this.firstname = firstname;
 		this.lastname = lastname;
-		this.Department = Department;
+		this.phone = phone;
 	}
 
-	public Doctor(Long id, String firstname, String lastname, String Department) {
-		this.id = id;
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.Department = Department;
-	}
+
 
 	public Long getId() {
 		return id;
@@ -76,20 +73,19 @@ public class Doctor {
 		this.lastname = lastname;
 	}
 
-	public String getDepartment() {
-		return Department;
+	public String getPhone() {
+		return phone;
 	}
 
-	public void setDepartment(String Department) {
-		this.Department = Department;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
-	public List<Patient> getPatients() {
-		return patients;
+	public Doctor getDoctor() {
+		return doctor;
 	}
 
-	public void setPatients(List<Patient> patients) {
-		this.patients = patients;
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
 	}
-	
 }

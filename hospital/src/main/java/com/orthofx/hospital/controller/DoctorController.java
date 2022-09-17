@@ -1,9 +1,9 @@
 package com.orthofx.hospital.controller;
 
-import java.util.HashMap;
+//import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
+//import java.util.Map;
+//import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -16,55 +16,50 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.orthofx.hospital.DTO.DoctorGetByIdDto;
+import com.orthofx.hospital.DTO.DoctorPostPutDto;
+//import com.orthofx.hospital.ServiceImplementation.DoctorService;
+import com.orthofx.hospital.ServiceImplementation.DoctorServiceInterface;
 import com.orthofx.hospital.exception.ResourceNotFoundException;
 import com.orthofx.hospital.model.Doctor;
-import com.orthofx.hospital.repository.DoctorRepository;
+import com.orthofx.hospital.model.Patient;
+//import com.orthofx.hospital.repository.DoctorRepository;
 
 @RestController
 @RequestMapping("/doctor")
 public class DoctorController {
+   
    @Autowired
-   private DoctorRepository doctorRepository;
+   private DoctorServiceInterface doctorService;
    
    @GetMapping("/allDoctors/")
 	public List<Doctor> getAllDoctor() {
-		return doctorRepository.findAll();
+		return doctorService.findAll();
 	}
+   
 	@GetMapping("/doctors/{id}")
-	public ResponseEntity<Doctor> getEmployeeById(@PathVariable(value = "id") Long DoctorId)
+	public DoctorGetByIdDto getDoctorById(@PathVariable(value = "id") Long DoctorId)
 			throws ResourceNotFoundException {
-		Doctor doctor = doctorRepository.findById(DoctorId)
-				.orElseThrow(() -> new ResourceNotFoundException("Doctor not found for this id :: " + DoctorId));
-		return ResponseEntity.ok().body(doctor);
+		return doctorService.findById(DoctorId); 
 	}
+	@GetMapping("/{id}")
+    public List<Patient> getById(@PathVariable(value = "id") Long DoctorId) throws ResourceNotFoundException {
+       return doctorService.findDoctor(DoctorId);
+    }
 	@PostMapping("/doctor")
-	public Doctor createDoctor(@RequestBody Doctor doctor) {
-		//Doctor doc = new Doctor("Kavya", "K", "fff");
-		return doctorRepository.save(doctor);
+	public Doctor createDoctor(@RequestBody DoctorPostPutDto doctorPostPutDto) {
+		return doctorService.createDoctor(doctorPostPutDto);
+
 	}
 	@PutMapping("/doctors/{id}")
 	public ResponseEntity<Doctor> updateDoctor(@PathVariable(value = "id") Long doctorId,
-			@Validated @RequestBody Doctor doctorDetails) throws ResourceNotFoundException {
-		Doctor doctor = doctorRepository.findById(doctorId)
-				.orElseThrow(() -> new ResourceNotFoundException("Doctor not found for this id :: " + doctorId));
-
-		doctor.setId(doctorDetails.getId());
-		doctor.setLastname(doctorDetails.getLastname());
-		doctor.setFirstname(doctorDetails.getFirstname());
-		doctor.setDepartment(doctorDetails.getDepartment());
-		final Doctor updatedDoctor = doctorRepository.save(doctor);
-		return ResponseEntity.ok(updatedDoctor);
+			@Validated @RequestBody DoctorPostPutDto doctorPostPutDto) throws ResourceNotFoundException {
+		return doctorService.updateDoctor(doctorId, doctorPostPutDto);
 	}
 	@DeleteMapping("/doctor/{id}")
-	public Map<String, Boolean> deleteDoctor(@PathVariable(value = "id") Long doctorId)
+	public void deleteDoctor(@PathVariable(value = "id") Long doctorId)
 			throws ResourceNotFoundException {
-		Doctor doctor = doctorRepository.findById(doctorId)
-				.orElseThrow(() -> new ResourceNotFoundException("Doctor not found for this id :: " + doctorId));
-
-		doctorRepository.delete(doctor);
-		Map<String, Boolean> response = new HashMap<>();
-		response.put("deleted", Boolean.TRUE);
-		return response;
+		 doctorService.deleteDoctor(doctorId);
 	}
    
 }

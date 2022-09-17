@@ -6,4 +6,5 @@ import com.orthofx.hospital.model.Doctor;
 
 public interface DoctorRepository extends JpaRepository<Doctor, Long> {
 
+
 }
