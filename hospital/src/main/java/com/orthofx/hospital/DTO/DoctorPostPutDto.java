@@ -5,11 +5,10 @@ public class DoctorPostPutDto {
 	private String lastname;
 	private String Department;
 	public DoctorPostPutDto(String firstname, String lastname, String department) {
-		this.firstname = firstname;
+		this.firstname = firstname; 
 		this.lastname = lastname;
 		Department = department;
 	}
-	
 	
 	public DoctorPostPutDto() {
 		super();

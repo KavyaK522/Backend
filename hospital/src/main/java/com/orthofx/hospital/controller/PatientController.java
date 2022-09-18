@@ -4,7 +4,7 @@ package com.orthofx.hospital.controller;
 //import java.util.HashMap;
 import java.util.List;
 //import java.util.Map;
-import java.util.Optional;
+//import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.http.ResponseEntity;
@@ -43,8 +43,8 @@ public class PatientController {
 		return patientService.findById(PatientId);
 	}
 	@GetMapping("/doctor/{Doctor_id}/patient/allpatients")
-	public Optional<Doctor> getAll(@PathVariable Long Doctor_id){
-		return patientService.findPatient(Doctor_id);
+	public List<Patient> getAll(@PathVariable Long Doctor_id) throws ResourceNotFoundException{
+		return patientService.getPatientByDoctorId(Doctor_id);
 	}
 	@PostMapping("doctor/{Doctor_id}/patient")
 	public Patient createPatient(@Validated @RequestBody Patient patient, @PathVariable Long Doctor_id) {
@@ -52,10 +52,10 @@ public class PatientController {
         return patientService.createPatient(patient);
 	}
 	@PutMapping("/patients/{id}")
-	public Patient updateDoctor(@PathVariable(value = "id") Long patientId,
-			@Validated @RequestBody Patient patientDetails) throws ResourceNotFoundException {
+	public Patient updatePatient(@PathVariable(value = "id") Long patientId,
+			@Validated @RequestBody Patient patientPostPutDto) throws ResourceNotFoundException {
 		//Patient patient = patientService.updatePatient(patientId);
-		return patientService.updatePatient(patientId, patientDetails);
+		return patientService.updatePatient(patientId, patientPostPutDto);
 				
 	}
 	@DeleteMapping("/patient/{id}")

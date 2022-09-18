@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.orthofx.hospital.DTO.DoctorGetAllDto;
 import com.orthofx.hospital.DTO.DoctorGetByIdDto;
 import com.orthofx.hospital.DTO.DoctorPatientDto;
 import com.orthofx.hospital.DTO.DoctorPostPutDto;
@@ -28,8 +29,10 @@ public class DoctorService implements DoctorServiceInterface {
 		return doctorRepository.save(doctor);
 	}
 
-	public List<Doctor> findAll() {
-		return doctorRepository.findAll();	
+	public List<Doctor> getAllDoctors (){
+		DoctorGetAllDto doctorDto = new DoctorGetAllDto();
+		doctorDto.setDoctorList(doctorRepository.findAll());
+		return (doctorDto.getDoctorList());
 	}
 
 	public DoctorGetByIdDto findById(Long doctorId) throws ResourceNotFoundException {

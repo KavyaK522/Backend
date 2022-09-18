@@ -33,10 +33,9 @@ public class DoctorController {
    private DoctorServiceInterface doctorService;
    
    @GetMapping("/allDoctors/")
-	public List<Doctor> getAllDoctor() {
-		return doctorService.findAll();
-	}
-   
+   public List<Doctor> getAll() {
+		return doctorService.getAllDoctors();
+   }
 	@GetMapping("/doctors/{id}")
 	public DoctorGetByIdDto getDoctorById(@PathVariable(value = "id") Long DoctorId)
 			throws ResourceNotFoundException {
@@ -51,7 +50,7 @@ public class DoctorController {
 		return doctorService.createDoctor(doctorPostPutDto);
 
 	}
-	@PutMapping("/doctors/{id}")
+	@PutMapping("/doctor/{id}")
 	public ResponseEntity<Doctor> updateDoctor(@PathVariable(value = "id") Long doctorId,
 			@Validated @RequestBody DoctorPostPutDto doctorPostPutDto) throws ResourceNotFoundException {
 		return doctorService.updateDoctor(doctorId, doctorPostPutDto);
