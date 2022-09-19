@@ -48,6 +48,7 @@ public class PatientService implements PatientServiceInterface {
 		Patient patient = patientRepository.findById(patientId)
 				.orElseThrow(() -> new ResourceNotFoundException("Doctor not found for this id :: " + patientId));
 		PatientGetByIdDto patientGetByIdDto = new PatientGetByIdDto();
+		patientGetByIdDto.setId(patient.getId());
 		patientGetByIdDto.setFirstname(patient.getFirstname());
 		patientGetByIdDto.setLastname(patient.getLastname());
 		patientGetByIdDto.setPhone(patient.getPhone());
