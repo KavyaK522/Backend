@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.orthofx.hospital.model.Doctor;
 import com.orthofx.hospital.model.Patient;
 import com.orthofx.hospital.DTO.PatientGetByIdDto;
+import com.orthofx.hospital.DTO.PatientPostPutDto;
 //import com.orthofx.hospital.repository.PatientRepository;
 //import com.orthofx.hospital.ServiceImplementation.PatientService;
 import com.orthofx.hospital.ServiceImplementation.PatientServiceInterface;
@@ -38,7 +39,7 @@ public class PatientController {
 	}
 	
 	@GetMapping("/patients/{id}/")
-	public PatientGetByIdDto getEmployeeById(@PathVariable(value = "id") Long PatientId)
+	public PatientGetByIdDto getPatientById(@PathVariable(value = "id") Long PatientId)
 			throws ResourceNotFoundException {
 		return patientService.findById(PatientId);
 	}
@@ -47,13 +48,13 @@ public class PatientController {
 		return patientService.getPatientByDoctorId(Doctor_id);
 	}
 	@PostMapping("doctor/{Doctor_id}/patient")
-	public Patient createPatient(@Validated @RequestBody Patient patient, @PathVariable Long Doctor_id) {
-		patient.setDoctor(new Doctor(Doctor_id,"","",""));
-        return patientService.createPatient(patient);
+	public Patient createPatient(@Validated @RequestBody PatientPostPutDto patientPostPutDto, @PathVariable Long Doctor_id) throws ResourceNotFoundException {
+		//patient.setDoctor(new Doctor(Doctor_id,"","",""));
+        return patientService.createPatient(patientPostPutDto, Doctor_id);
 	}
 	@PutMapping("/patients/{id}")
 	public Patient updatePatient(@PathVariable(value = "id") Long patientId,
-			@Validated @RequestBody Patient patientPostPutDto) throws ResourceNotFoundException {
+			@Validated @RequestBody PatientPostPutDto patientPostPutDto) throws ResourceNotFoundException {
 		//Patient patient = patientService.updatePatient(patientId);
 		return patientService.updatePatient(patientId, patientPostPutDto);
 				

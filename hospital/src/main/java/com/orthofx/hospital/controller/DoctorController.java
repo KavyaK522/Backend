@@ -51,7 +51,7 @@ public class DoctorController {
 
 	}
 	@PutMapping("/doctor/{id}")
-	public ResponseEntity<Doctor> updateDoctor(@PathVariable(value = "id") Long doctorId,
+	public Doctor updateDoctor(@PathVariable(value = "id") Long doctorId,
 			@Validated @RequestBody DoctorPostPutDto doctorPostPutDto) throws ResourceNotFoundException {
 		return doctorService.updateDoctor(doctorId, doctorPostPutDto);
 	}

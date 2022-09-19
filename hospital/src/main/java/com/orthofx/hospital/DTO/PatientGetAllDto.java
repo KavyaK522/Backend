@@ -11,7 +11,7 @@ public class PatientGetAllDto extends PatientPostPutDto {
 		return patientList;
 	}
 
-	public void setTeamList(List<Patient> patientList) {
+	public void setPatientList(List<Patient> patientList) {
 		this.patientList = patientList;
 	}
 

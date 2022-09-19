@@ -14,7 +14,7 @@ public interface DoctorServiceInterface {
 	public Doctor createDoctor(DoctorPostPutDto doctorPostPutDto);
 	public DoctorGetByIdDto findById(Long doctorId) throws ResourceNotFoundException;
 	public List<Patient> findDoctor(Long doctorId) throws ResourceNotFoundException;
-	public ResponseEntity<Doctor> updateDoctor(Long doctorId, DoctorPostPutDto doctorPostPutDto) throws ResourceNotFoundException;
+	public Doctor updateDoctor(Long doctorId, DoctorPostPutDto doctorPostPutDto) throws ResourceNotFoundException;
 	public void deleteDoctor(Long doctorId) throws ResourceNotFoundException;
 	public List<Doctor> getAllDoctors();
 }

@@ -23,9 +23,9 @@ public class DoctorService implements DoctorServiceInterface {
 
 	public Doctor createDoctor(DoctorPostPutDto doctorPostPutDto) {
 		Doctor doctor = new Doctor();
-		doctorPostPutDto.setFirstname(doctor.getFirstname());
-		doctorPostPutDto.setLastname(doctor.getLastname());
-		doctorPostPutDto.setDepartment(doctor.getDepartment());
+		doctor.setFirstname(doctorPostPutDto.getFirstname());
+		doctor.setLastname(doctorPostPutDto.getLastname());
+		doctor.setDepartment(doctorPostPutDto.getDepartment());
 		return doctorRepository.save(doctor);
 	}
 
@@ -45,7 +45,7 @@ public class DoctorService implements DoctorServiceInterface {
 		return doctorGetByIdDto;
 	}
 
-	public List<Patient> Doctor(Long doctorId) throws ResourceNotFoundException {
+	public List<Patient> findDoctor(Long doctorId) throws ResourceNotFoundException {
 		if (!doctorRepository.existsById(doctorId))
 			throw new ResourceNotFoundException("Doctor not found for this id :: " + doctorId);
 
@@ -57,7 +57,7 @@ public class DoctorService implements DoctorServiceInterface {
     }
 	
 
-	public ResponseEntity<Doctor> updateDoctor(Long doctorId, DoctorPostPutDto doctorPostPutDto) throws ResourceNotFoundException {
+	public Doctor updateDoctor(Long doctorId, DoctorPostPutDto doctorPostPutDto) throws ResourceNotFoundException {
 		if (!doctorRepository.existsById(doctorId))
 				throw new ResourceNotFoundException("Doctor not found for this id :: " + doctorId);
 
@@ -65,7 +65,7 @@ public class DoctorService implements DoctorServiceInterface {
 		doctor.setLastname(doctorPostPutDto.getLastname());
 		doctor.setFirstname(doctorPostPutDto.getFirstname());
 		doctor.setDepartment(doctorPostPutDto.getDepartment());
-		return ResponseEntity.ok(doctor);
+		return doctorRepository.save(doctor);
 	}
 
 	public void deleteDoctor(Long doctorId) throws ResourceNotFoundException {
@@ -75,12 +75,7 @@ public class DoctorService implements DoctorServiceInterface {
 		doctorRepository.delete(doctor);
 	}
 
-	@Override
-	public List<Patient> findDoctor(Long doctorId) throws ResourceNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 	
 	
 	
